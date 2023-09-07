@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> View Feedback of Customers </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class = "container" >
+        {% if detail !="No records found"%}
+            <h4 align="center" class="msg">
+                <strong>{{msg}}</strong>
+            </h4>
+            <br>
+            {% if detail %}
+            <div class="table-responsive" id="feedback">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Price</th>
+							<th scope="col">Rating</th>
+							<th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in detail %}
+                            <tr>
+                               <td>{{u['username']}}</td>
+                                <td> {{u['item']}} </td>
+                                <td>{{u['price']}}</td>
+								<td> {{u['rating']}} </td>
+                                <td>{{u['orderdate']}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {%endif%}
+            <div>
+                {%else%}
+                    <h4 align="center" class="msg">
+                        <strong>{{detail}}</strong>
+                    </h4>
+                {%endif%}
+            </div>  
+    </div>
+</body>
+</html>

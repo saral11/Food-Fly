@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Address </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<style>
+    #amount{
+        background-color: crimson;
+        color: white;
+        width: 50%;
+    }
+</style>
+<body>
+
+    <div class="managerregister" align="center">
+        <h3>
+            <form action="{{ url_for('address') }}" onsubmit="return check()" method="post">
+                <div class="msg">{{ msg }}</div>
+
+                <h3 id="amount">Total Order Price is: Rs. {{acc['sum']}}</h3>
+
+                <h3> Hurray! Now just few more steps and delicious food will be on your doorstep! <br><br>
+                Enter Delivery Address </h3>
+                <input id="address" name="address" type="text" placeholder="Type Your Address Here"
+                    size="45" /></br><br><br>
+                
+                <button class="btn btn-success" type="submit" value=""> Finish Order Confirmation </button></br>    
+            </form>
+        </h3>
+    </div>
+
+</body>
+
+</html>

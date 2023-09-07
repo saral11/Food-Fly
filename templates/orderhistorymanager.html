@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Manager | Order History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<style>
+    h4{
+        color: crimson;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    body {
+        background-image: url('https://console.kr-asia.com/wp-content/uploads/2020/05/Food-Delivery-Shutterstock-M-Size-1-scaled.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: rgb(53, 15, 87);
+        color: white;
+    }
+    nav a {
+        color: white;
+        border-radius: 8px;
+        padding: 8px;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        background-color: white;
+        color: rgb(53, 15, 87);
+    }
+</style>
+
+<nav>
+    <a href="{{ url_for('editmenu') }}"> Edit menu</a>
+    <a href="{{ url_for('feed') }}"> Feedback</a>
+    <a href="{{ url_for('orderhist') }}"> Order history</a>
+    <a href="{{ url_for('logout') }}"> Logout</a>
+</nav>
+
+<body>
+    <div class="container">
+        {% if detail != "No records found"%}
+        <h4 align="center" class="msg">
+            <strong>{{msg}}</strong>
+        </h4>
+        <br>
+        {% if detail %}
+        <div class="table-responsive">
+            <h2 align="center">Order History</h2> <br>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in detail %}
+                    <tr>
+                        <td> {{u['username']}} </td>
+                        <td> {{u['item']}} </td>
+                        <td> {{u['quantity']}} </td>
+                        <td> {{u['price']}} </td>
+                        <td> {{u['quantity'] * u['price']}} </td>
+                        <td> {{ u['orderdate'] }} </td>
+                        <td> {{u['status']}} </td>
+                        <td> {{ u['address'] }}</td>
+                        <td>  
+                            {% if u['status'] == 'confirmed' %}
+                            <button class="btn btn-danger">
+                                <a href="{{url_for('cancelorderm', id=u['orderid'])}}">
+                                    Cancel Delivery
+                                </a>
+                            </button>
+                            {% endif %} 
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {%endif%}
+        <div>
+            {%else%}
+            <h4 align="center" class="msg">
+                <strong>{{detail}}</strong>
+            </h4>
+            {%endif%}
+        </div>
+    </div>
+</body>
+
+</html>

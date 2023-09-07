@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Delete Manager </title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+
+<body>
+	<div class="div1" align="center">
+
+	<h3><a href="{{ url_for('fetchmanager') }}"> Click Here for the list of Managers </a></h3></br><br><br>
+
+    <h3> Manager Search: </h3>
+
+	<form action="{{ url_for('adminsearchmusername') }}" method="post"> 
+		<div class="msg">{{ msg }}</div> 
+		<input id="username" name="username" type="text" placeholder="Enter Username" class="textbox" size="15"/>
+		<button class="btn btn-success" type="submit" value="Search by username">Search By Username</button></br> 
+	</form>
+
+	<form action="{{ url_for('adminsearchmname') }}" method="post"> 
+		<div class="msg">{{ msg }}</div> 
+		<input id="resname" name="resname" type="text" placeholder="Enter Outlet Name" class="textbox" size="15"/>
+		<button class="btn btn-success" type="submit" value="Search by outlet name">Search By Outlet Name</button></br> 
+	</form>
+	
+    </div>
+</body>
+
+</html>

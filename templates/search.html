@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<style>
+    body {
+        background-image: url('https://console.kr-asia.com/wp-content/uploads/2020/05/Food-Delivery-Shutterstock-M-Size-1-scaled.jpg');
+
+        background-size: cover;
+    }
+</style>
+
+
+<body class="bgimg">
+    <div class="div1" align="center">
+        <form action="{{ url_for('searchresname') }}" method="post">
+            <div class="msg">{{ msg }}</div>
+            <input id="resname" name="resname" type="text" placeholder="Enter Outlet Name" class="textbox" size="15" />
+            <button type="submit" value="Search by resname" class="btn btn-success">Search By Outlet Name</button></br>
+        </form>
+        <form action="{{ url_for('searchitemname') }}" method="post">
+            <input id="itemname" name="itemname" type="text" placeholder="Enter Item Name" class="textbox" size="15" />
+            <button type="submit" value="Search by item name" class="btn btn-success">Search By Item Name</button></br>
+        </form>
+        <form action="{{ url_for('searchprice') }}" method="post">
+            <input id="price" name="price" type="number" placeholder="Enter Max Price" class="textbox" size="15" />
+            <button type="submit" value="Search by max price" class="btn btn-success">Search By Max Price</button></br>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Admin </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<style>
+    body {
+        background-image: url('https://console.kr-asia.com/wp-content/uploads/2020/05/Food-Delivery-Shutterstock-M-Size-1-scaled.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: rgb(53, 15, 87);
+        color: white;
+        /* align-items: center; */
+        /* width: 8%;
+        height: 100%; */
+    }
+    nav a {
+        color: white;
+        border-radius: 8px;
+        padding: 8px;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        background-color: white;
+        color: rgb(53, 15, 87);
+    }
+</style>
+
+<body>
+    <nav>
+        <a href="{{ url_for('verifyoutlet') }}"> Verify Outlet </a></br>
+        <a href="{{ url_for('deleteuser') }}"> Delete User </a> </br>
+        <a href="{{ url_for('deletemanager') }}"> Delete Manager </a> </br>
+        <a href="{{ url_for('logout') }}"> Logout </a> </br>
+    </nav>
+</body>
+
+</html>
