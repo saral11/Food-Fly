@@ -44,14 +44,19 @@
                         <td> {{u['price']}} </td>
                         <td> {{ u['quantity'] * u['price'] }} </td>
                         <td> 
-                            <button class="btn btn-info">
+                            <button class="btn btn-dark">
+                                <a href="{{url_for('increase',id=u['orderid'])}}">
+                                    +
+                                </a>
+                            </button>
+                            <button class="btn btn-dark">
                                 <a href="{{url_for('reduce',id=u['orderid'])}}">
-                                    Reduce
+                                    -
                                 </a>
                             </button>
                             <button class="btn btn-danger">
                                 <a href="{{url_for('deleteorder',id=u['orderid'])}}">
-                                    Remove
+                                    Remove Item
                                 </a>
                             </button>
                         </td>

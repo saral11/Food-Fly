@@ -553,6 +553,27 @@ def reduce(id):
         else:
             return render_template("cart.html", msg="No Orders Found")
 
+@app.route("/increase/<string:id>", methods=["POST", "GET"])
+def increase(id):
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cur.execute("SELECT * FROM orders WHERE orderid=%s", ([id],))
+    acc = cur.fetchone()
+    # if acc["quantity"] > 1:
+    cur.execute("UPDATE orders set quantity = quantity + 1 WHERE orderid=%s", ([id],))
+    mysql.connection.commit()
+    cur.close()
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cur.execute(
+        "SELECT orderid,resname,item,quantity,price FROM orders where username=%s and status=%s",
+        (session["username"], "ordered"),
+    )
+    result = cur.fetchall()
+    if result:
+        return render_template("cart.html", detail=result, msg = "Quantity Increased")
+    else:
+        return render_template("cart.html", msg="No Orders Found")
+
+
 
 @app.route("/deleteorder/<string:id>", methods=["POST", "GET"])
 def deleteorder(id):
@@ -973,7 +994,7 @@ def deleteitem(id):
 
 @app.route("/additem", methods=["POST", "GET"])
 def additem():
-    msg = "enter details"
+    msg = "Enter Item Details"
     if request.method == "POST" and "item" in request.form and "price" in request.form:
         item = request.form["item"]
         price = request.form["price"]
